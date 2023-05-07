@@ -39,7 +39,7 @@ end
 
 describe String do
   # Create a let variable that will pass the first test.
-  let(:favorite_food) {} 'tacos' }
+  let(:favorite_food) { 'tacos' }
   # remove the 'x' before running this test
   it 'is equal to tacos' do
     expect(favorite_food).to eq('tacos')
