@@ -40,6 +40,7 @@ end
 describe String do
   # Create a let variable that will pass the first test.
   let(:favorite_food) do
+    dylan = 'Dylan'
     'tacos'
   end
   # remove the 'x' before running this test
@@ -50,9 +51,10 @@ describe String do
   # remove the 'x' before running this test
   context 'when favorite food is updated' do
     # Change the favorite_food let variable.
-
-    xit 'updates the favorite food' do
+    let(:favorite_food) { 'macaroni cheese' }
+    it 'updates the favorite food' do
       # Write a test that will pass.
+      expect(favorite_food).to eq('macaroni cheese')
     end
   end
 end
