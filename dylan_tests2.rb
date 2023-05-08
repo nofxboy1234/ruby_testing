@@ -40,3 +40,4 @@ RSpec.describe Array do
 end
 
 puts "rubocop version loaded: #{Gem.loaded_specs['rubocop'].version}"
+# bundle config set --local deployment 'true'
