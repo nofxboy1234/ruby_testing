@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../lib/13_input_output'
+require 'pry-byebug'
 
 # The file order to complete this lesson:
 # 1. Familarize yourself with the two classes in lib/13_input_output.rb
@@ -48,10 +49,12 @@ describe NumberGame do
       # Write a similar test to the one above, that uses a custom matcher
       # instead of <, >, =.
       matcher :be_between_zero_and_nine do
+        match { |actual| actual >= 0 && actual <= 9 }
       end
 
       # remove the 'x' before running this test
-      xit 'is a number between 0 and 9' do
+      it 'is a number between 0 and 9' do
+        expect(game.solution).to be_between_zero_and_nine
       end
     end
   end
@@ -78,8 +81,10 @@ describe NumberGame do
     # Create a new instance of NumberGame and write a test for when the @guess
     # does not equal @solution.
     context 'when user guess is not correct' do
+      subject(:game_continue) { described_class.new(5, '3') }
       # remove the 'x' before running this test
-      xit 'is not game over' do
+      it 'is not game over' do
+        expect(game_continue).to_not be_game_over
       end
     end
   end
@@ -107,7 +112,10 @@ describe NumberGame do
 
     # Write a test for the following context.
     context 'when given invalid input as argument' do
-      xit 'returns nil' do
+      it 'returns nil' do
+        user_input = 'a'
+        verified_input = game_check.verify_input(user_input)
+        expect(verified_input).to be_nil
       end
     end
   end
@@ -167,9 +175,15 @@ describe NumberGame do
     # Write a test for the following context.
     context 'when user inputs two incorrect values, then a valid input' do
       before do
+        two_incorrect = ['a', 'b']
+        valid_input = '9'
+        allow(game_loop).to receive(:player_input).and_return(*two_incorrect,
+                                                               valid_input)
       end
 
-      xit 'completes loop and displays error message twice' do
+      it 'completes loop and displays error message twice' do
+        expect(game_loop).to receive(:puts).with('Input error!').twice
+        game_loop.player_turn
       end
     end
   end
