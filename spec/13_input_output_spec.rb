@@ -49,7 +49,7 @@ describe NumberGame do
       # Write a similar test to the one above, that uses a custom matcher
       # instead of <, >, =.
       matcher :be_between_zero_and_nine do
-        match { |actual| actual >= 0 && actual <= 9 }
+        match { |actual| actual.between?(0, 9) }
       end
 
       # remove the 'x' before running this test
