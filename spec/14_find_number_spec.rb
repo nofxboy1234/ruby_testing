@@ -275,6 +275,10 @@ describe FindNumber do
     context 'when the guess is 7, min=5, and max=8' do
       subject(:edge_case_game) { described_class.new(5, 8, number_range, 7) }
       
+      # let!(:like_a_before_each_block) do
+      #   edge_case_game.update_range
+      # end
+
       before do
         edge_case_game.update_range
       end
