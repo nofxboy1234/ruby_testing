@@ -49,6 +49,35 @@
 # end
 
 
+# class User
+#   def tests
+#     @tests ||= []
+#   end
+# end
+
+# describe User do
+#   before(:each) do
+#     @user = User.new
+#   end
+
+#   describe "initialized in before(:each)" do
+#     it "has 0 tests" do
+#       # @user.should have(0).tests
+#       expect(@user.tests.size).to eq(0)
+#     end
+
+#     it "can accept new tests" do
+#       @user.tests << Object.new
+#     end
+
+#     it "does not share state across examples" do
+#       # @user.should have(0).tests
+#       expect(@user.tests.size).to eq(0)
+#     end
+#   end
+# end
+
+
 class User
   def tests
     @tests ||= []
@@ -56,23 +85,23 @@ class User
 end
 
 describe User do
-  before(:each) do
+  before(:all) do
     @user = User.new
   end
 
-  describe "initialized in before(:each)" do
+  describe "initialized in before(:all)" do
     it "has 0 tests" do
       # @user.should have(0).tests
       expect(@user.tests.size).to eq(0)
     end
 
-    it "can accept new tests" do
+    it "can get accept new tests" do
       @user.tests << Object.new
     end
 
-    it "does not share state across examples" do
-      # @user.should have(0).tests
-      expect(@user.tests.size).to eq(0)
+    it "shares state across examples" do
+      # @user.should have(1).tests
+      expect(@user.tests.size).to eq(1)
     end
   end
 end
