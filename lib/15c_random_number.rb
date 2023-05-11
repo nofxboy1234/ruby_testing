@@ -7,7 +7,6 @@ class RandomNumber
   attr_reader :value
 
   def initialize(minimum, maximum)
-    binding.pry
     @value = rand(minimum..maximum)
   end
 
