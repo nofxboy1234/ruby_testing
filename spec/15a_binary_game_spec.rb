@@ -114,7 +114,9 @@ describe BinaryGame do
         min = game_input.instance_variable_get(:@minimum)
         max = game_input.instance_variable_get(:@maximum)
         error_message = "Input error! Please enter a number between #{min} or #{max}."
+
         expect(game_input).not_to receive(:puts).with(error_message)
+        
         game_input.player_input(min, max)
       end
     end
@@ -315,7 +317,6 @@ describe BinaryGame do
 
   describe '#display_binary_search' do
     # Located inside #play_game (Public Script Method)
-
     # Looping Script Method -> Test the behavior of the method (for example, it
     # stops when certain conditions are met).
 
