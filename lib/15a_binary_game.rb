@@ -7,7 +7,8 @@
 
 # class for computer to find random number
 class BinaryGame
-  def initialize(minimum, maximum, random_number = RandomNumber.new(minimum, maximum))
+  def initialize(minimum, maximum, random_number = RandomNumber.new(minimum,
+                                                                    maximum))
     @minimum = minimum
     @maximum = maximum
     @random_number = random_number
@@ -18,7 +19,8 @@ class BinaryGame
     introduction
     mode = player_input(1, 2)
     update_random_number if mode == 1
-    puts "\nUsing a binary search, any number can be found in #{maximum_guesses} guesses or less!\n\n"
+    puts "\nUsing a binary search, any number can be found in "\
+         "#{maximum_guesses} guesses or less!\n\n"
     binary_search = create_binary_search
     display_binary_search(binary_search)
     puts "As predicted, the computer found it in #{@guess_count} guesses."
@@ -27,7 +29,10 @@ class BinaryGame
   def player_input(min, max)
     loop do
       user_input = gets.chomp
-      verified_number = verify_input(min, max, user_input.to_i) if user_input.match?(/^\d+$/)
+
+      if user_input.match?(/^\d+$/)
+        verified_number = verify_input(min, max, user_input.to_i)  
+      end
       return verified_number if verified_number
 
       puts "Input error! Please enter a number between #{min} or #{max}."
@@ -68,9 +73,12 @@ class BinaryGame
   def introduction
     puts <<~HEREDOC
 
-      \e[32mWatch the computer find a number between #{@minimum} and #{@maximum} using a binary search.\e[0m
+      \e[32mWatch the computer find a number between #{@minimum} and #{@maximum}
+      using a binary search.\e[0m
 
-      The computer-generated random number is \e[32m#{@random_number.value}\e[0m.
+      The computer-generated random number is 
+      \e[32m#{@random_number.value}\e[0m.
+
       Would you like to choose your own number?
 
       \e[32m[1]\e[0m Choose a new number

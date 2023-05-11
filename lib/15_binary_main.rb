@@ -4,6 +4,8 @@ require_relative '../lib/15a_binary_game'
 require_relative '../lib/15b_binary_search'
 require_relative '../lib/15c_random_number'
 
+require 'pry-byebug'
+
 # This file can be run in the console.
 
 minimum = 1
