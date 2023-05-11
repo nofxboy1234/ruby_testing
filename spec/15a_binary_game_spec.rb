@@ -128,10 +128,13 @@ describe BinaryGame do
     # Remember that a stub can be called multiple times and return different values.
     # https://web.archive.org/web/20230101143200/https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/returning-a-value
 
+    before do
+      valid_input = '5'
+    end
+
     context 'when user inputs an incorrect value once, then a valid input' do
       before do
         invalid_input = 'a'
-        valid_input = '5'
         allow(game_input).to receive(:gets).and_return(invalid_input, 
                                                        valid_input)
       end
@@ -149,7 +152,6 @@ describe BinaryGame do
     context 'when user inputs two incorrect values, then a valid input' do
       before do
         invalid_inputs = ['a', '19']
-        valid_input = '5'
         allow(game_input).to receive(:gets).and_return(*invalid_inputs, 
                                                        valid_input)
       end
