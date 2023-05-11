@@ -381,32 +381,30 @@ describe BinaryGame do
 
     before do
       # You'll need to create a few method stubs.
-      allow(binary_search_turn).to receive(:make_guess).once
-      allow(binary_search_turn).to receive(:update_range).once
+      allow(binary_search_turn).to receive(:make_guess)
+      allow(binary_search_turn).to receive(:update_range)
 
-      allow(order_display).to receive(:display_guess).once
+      allow(order_display).to receive(:display_guess)
 
       allow(binary_search_turn).to receive(:game_over?)
     end
 
     # Command Method -> Test the change in the observable state
     it 'increases guess_count by one' do
-      order_display.display_turn_order(binary_search_turn)
-      
-      guess_count = order_display.instance_variable_get(:@guess_count)
-
-      expect(guess_count).to eq(1)
+      expect { order_display.display_turn_order(binary_search_turn) }
+        .to change { order_display.instance_variable_get(:@guess_count) }
+        .by(1)
     end
 
     # Method with Outgoing Command -> Test that a message is sent
-    it 'sends make_guess' do
+    it 'sends make_guess to binary_search_turn' do
       expect(binary_search_turn).to receive(:make_guess).once
 
       order_display.display_turn_order(binary_search_turn)
     end
 
     # Method with Outgoing Command -> Test that a message is sent
-    it 'sends update_range' do
+    it 'sends update_range to binary_search_turn' do
       expect(binary_search_turn).to receive(:update_range).once
 
       order_display.display_turn_order(binary_search_turn)
