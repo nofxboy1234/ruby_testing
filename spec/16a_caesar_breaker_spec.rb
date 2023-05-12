@@ -83,7 +83,7 @@ describe CaesarBreaker do
       # Write the following 3 tests:
 
       it 'sends message to check the existance of the 16_cipher directory' do
-        expect(Dir).to receive(:exist?).once
+        expect(Dir).to receive(:exist?).with('16_cipher').once
         
         phrase.save_decrypted_messages
       end
@@ -108,13 +108,12 @@ describe CaesarBreaker do
     context 'when the directory exists' do
       before do
         allow(Dir).to receive(:exist?).and_return(true)
-        allow(Dir).to receive(:mkdir)
         allow(File).to receive(:open)
         allow(phrase).to receive(:display_file_location)
       end
 
       it 'sends message to check the existance of the 16_cipher directory' do
-        expect(Dir).to receive(:exist?).once
+        expect(Dir).to receive(:exist?).with('16_cipher').once
         
         phrase.save_decrypted_messages
       end
