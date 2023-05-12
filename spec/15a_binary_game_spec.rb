@@ -195,9 +195,9 @@ describe BinaryGame do
       it 'returns nil' do
         min = game_verify.instance_variable_get(:@minimum)
         max = game_verify.instance_variable_get(:@maximum)
-        valid_input = '7'
+        invalid_input = '7'
 
-        verified_input = game_verify.verify_input(min, max, valid_input.to_i)
+        verified_input = game_verify.verify_input(min, max, invalid_input.to_i)
         
         expect(verified_input).to be_nil
       end
@@ -387,7 +387,7 @@ describe BinaryGame do
 
       allow(order_display).to receive(:display_guess)
 
-      allow(binary_search_turn).to receive(:game_over?)
+      # allow(binary_search_turn).to receive(:game_over?)
     end
 
     # Command Method -> Test the change in the observable state
